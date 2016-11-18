@@ -85,7 +85,7 @@ class FactoryMuffin
         $seeds = [];
 
         $method = $save ? 'create' : 'instance';
-        
+
         for ($i = 0; $i < $times; ++$i) {
             $seeds[] = $this->{$method}($name, $attr);
         }
