@@ -48,8 +48,11 @@ class DoctrineTest extends AbstractTestCase
         $schemaTool->createSchema($classes);
 
         static::$fm->define(self::USER_ENTITY)->setDefinitions([
-            'name'   => Faker::firstNameMale(),
+            'name'   => function (\League\FactoryMuffin\Test\User $user) {
+                return Faker::firstName($user->getGender());
+            },
             'email'  => Faker::email(),
+            'gender' => Faker::randomElement([1,2])
         ]);
 
         static::$fm->getDefinition(self::USER_ENTITY)->setCallback(function ($model) {

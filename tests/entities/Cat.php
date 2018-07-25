@@ -14,7 +14,9 @@ class Cat
      */
     private $id;
 
-    /** @Column(length=140) */
+    /**
+     * @Column(length=140)
+     */
     private $name;
 
     /**

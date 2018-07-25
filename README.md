@@ -85,6 +85,18 @@ $fm->define('MyModel')->setDefinitions([
 
 ##### Example 2
 
+Nested closure resolved to generate attributes, but attribute value not will be callable. Here we use it to generate a username dependency by gender.
+```php
+$fm->define('MyModel')->setDefinitions([
+    'name' => function ($object, $saved) {
+        return Faker::firstName($object->getGender());
+    },
+    'gender' => Faker::sentence(5),
+]);
+```
+
+##### Example 3
+
 This will set the `foo` attribute to whatever calling `MyModel::exampleMethod($object, $saved)` returns.
 ```php
 $fm->define('MyModel')->setDefinitions([
@@ -92,7 +104,7 @@ $fm->define('MyModel')->setDefinitions([
 ]);
 ```
 
-##### Example 3
+##### Example 4
 
 There is a simple example of setting a few different attributes using our faker wrapper.
 ```php
@@ -107,7 +119,7 @@ $fm->define('MyModel')->setDefinitions([
 ]);
 ```
 
-##### Example 4
+##### Example 5
 
 This will set the `age` attribute to a random number between 20 and 40.
 ```php
@@ -118,7 +130,7 @@ $fm->define('MyModel')->setDefinitions([
 ]);
 ```
 
-##### Example 5
+##### Example 6
 
 This will set the `name` attribute to a random female first name. Because we've called the `unique` method first, the attribute should be unique between all your generated models. Be careful with this if you're generating lots models because we might run out of unique items. Also, note that calling `Faker::setLocale('whatever')` will reset the internal unique list.
 ```php
@@ -127,7 +139,7 @@ use League\FactoryMuffin\Faker\Facade as Faker;
 $fm->define('MyModel')->addDefinition('name', Faker::unique()->firstNameFemale());
 ```
 
-##### Example 6
+##### Example 7
 
 This will set the `profile_pic` attribute to a random image url of dimensions 400 by 400. Because we've called the `optional` method first, not all the generated models will have an image url set; sometimes we will return null.
 ```php

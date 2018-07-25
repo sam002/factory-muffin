@@ -21,6 +21,11 @@ class User
     private $name;
 
     /**
+     * @Column(type="boolean")
+     */
+    private $gender;
+
+    /**
      * @Column(length=140)
      */
     private $email;
@@ -49,6 +54,22 @@ class User
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param mixed $gender
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
     }
 
     /**

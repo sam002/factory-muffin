@@ -78,6 +78,11 @@ class CallableGenerator implements GeneratorInterface
     {
         $saved = $this->factoryMuffin->isPendingOrSaved($this->model);
 
-        return call_user_func($this->kind, $this->model, $saved);
+        $result = $this->kind;
+        do {
+            $result = call_user_func($result, $this->model, $saved);
+        } while (is_callable($result));
+
+        return $result;
     }
 }
